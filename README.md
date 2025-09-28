@@ -12,7 +12,7 @@ Kelas: A'2024
 
 <img width="404" height="71" alt="image" src="https://github.com/user-attachments/assets/c085a2fd-2fc5-4f87-b522-f64c9afe52fe" />
 
-File model/CetakLaporan.java dibuat untuk menampung kerangka atau cetakan dasar laporan parkir. Di dalamnya hanya terdapat definisi method cetakRingkas() tanpa isi (body). Class ini tidak dapat dibuat menjadi objek langsung, tetapi tetapi bisa diwariskan ke class Parkir.
+File model/CetakLaporan.java dibuat untuk menampung kerangka atau cetakan dasar laporan parkir. Di dalamnya hanya terdapat definisi method cetakRingkas() tanpa isi (body). Class ini tidak dapat dibuat menjadi objek langsung, tetapi bisa diwariskan ke class Parkir.
 
 ### Class Parkir yang mengimplementasikan
 
@@ -57,6 +57,7 @@ Pada class ParkirMobil, method hitungBiaya(long jamBulatKeAtas) yang berada di c
 Pada menu 5 (Cari Data Parkir), pengguna memasukkan kata kunci pencarian “bil”. Program menampilkan semua data parkir yang jenis kendaraannya Mobil karena kata kunci “bil” cocok dengan sebagian teks Mobil. Data hasil pencarian ditampilkan dalam bentuk tabel, kemudian diikuti Ringkasan detail setiap hasil. Bagian ringkasan ini memanggil dua method yang berasal dari konsep abstraction:
 - cetakInfo(), implementasi dari interface InfoKendaraan yang menampilkan keterangan “Kendaraan dengan plat KT5678CD berada di blok C1”.
 - cetakRingkas(), implementasi dari abstract class CetakLaporan yang menampilkan ringkasan seperti ID, Plat, dan Biaya.
+
 Selain itu, proses pencarian ini juga menerapkan polymorphism dengan overloading. Class ParkingService memiliki dua method cariData dengan parameter berbeda:
 - cariData(int idTiket) untuk pencarian berdasarkan ID tiket dan mengembalikan satu objek.
 - cariData(String kata) untuk pencarian berdasarkan plat atau jenis kendaraan dan mengembalikan banyak data dalam ArrayList<Parkir>.
@@ -70,3 +71,7 @@ Pada menu 3 (Perbarui Data Parkir), khususnya menu Jam Keluar (hitung biaya) unt
 <img width="978" height="1060" alt="image" src="https://github.com/user-attachments/assets/b2e9293c-ff0b-466e-ab8a-bfe6c3d98880" />
 
 Perbarui data pada menu Jam Keluar (hitung biaya) untuk kendaraan Mobil dengan ID 1 dan plat KT4959IO. Setelah pengguna memasukkan jam keluar 18:25, program menghitung lama parkir menjadi 11 jam dan biaya sebesar Rp55.000. Perhitungan ini dijalankan melalui method hitungBiaya() yang dioverride di subclass ParkirMobil dengan tarif Rp5.000 per jam (11 × 5000 = 55.000).
+
+<img width="1295" height="510" alt="image" src="https://github.com/user-attachments/assets/1f5f53b2-4600-4085-891f-79e466df08f7" />
+
+Setelah proses perbarui data, tabel menampilkan informasi terbaru kendaraan dengan ID 0001 (Mobil) sudah terisi jam keluar 18:25 dengan durasi 615 menit (±11 jam) dan biaya Rp55.000, sedangkan ID 0002 (Motor) terisi jam keluar 15:30 dengan durasi 420 menit (±7 jam) dan biaya Rp21.000. Perubahan kolom KELUAR, DURASI, dan BIAYA ini dihasilkan oleh method hitungBiaya() yang dioverride di ParkirMobil dan ParkirMotor, sehingga tarif dihitung otomatis sesuai jenis kendaraan.
